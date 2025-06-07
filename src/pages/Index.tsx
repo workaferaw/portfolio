@@ -1,9 +1,6 @@
-
 import React, { useEffect, useRef } from 'react';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
 import Works from '@/components/Works';
-import Experiments from '@/components/Experiments';
 import Contact from '@/components/Contact';
 import Navigation from '@/components/Navigation';
 import BackgroundShapes from '@/components/BackgroundShapes';
@@ -31,7 +28,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-black text-white overflow-x-hidden">
+    <div ref={containerRef} className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
       <BackgroundShapes />
       <Navigation />
       
@@ -40,16 +37,8 @@ const Index = () => {
           <Hero />
         </section>
         
-        <section id="about" className="min-h-screen fade-in-section">
-          <About />
-        </section>
-        
         <section id="works" className="min-h-screen fade-in-section">
           <Works />
-        </section>
-        
-        <section id="experiments" className="min-h-screen fade-in-section">
-          <Experiments />
         </section>
         
         <section id="contact" className="min-h-screen fade-in-section">

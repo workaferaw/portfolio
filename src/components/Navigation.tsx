@@ -1,21 +1,18 @@
-
 import React, { useEffect, useState, useRef } from 'react';
-import { X, Minimize } from 'lucide-react';
+import { X, Sun, Moon } from 'lucide-react';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('hero');
-  const [isMinimized, setIsMinimized] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [position, setPosition] = useState({ x: 32, y: 32 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const navRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
     { id: 'hero', label: 'home' },
-    { id: 'about', label: 'about' },
     { id: 'works', label: 'works' },
-    { id: 'experiments', label: 'experiments' },
     { id: 'contact', label: 'contact' },
   ];
 
@@ -80,27 +77,26 @@ const Navigation = () => {
     }
   };
 
-  const handleMinimize = () => {
-    setIsMinimized(true);
-    setTimeout(() => setIsVisible(false), 300);
-  };
-
   const handleClose = () => {
     setIsVisible(false);
   };
 
   const handleRestore = () => {
     setIsVisible(true);
-    setIsMinimized(false);
+  };
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark');
   };
 
   if (!isVisible) {
     return (
       <button
         onClick={handleRestore}
-        className="fixed top-4 left-4 z-50 w-8 h-8 bg-white/20 backdrop-blur-sm curved-edges flex items-center justify-center text-white/60 hover:text-white hover:bg-white/30 transition-all duration-300"
+        className="fixed top-4 left-4 z-50 w-8 h-8 bg-foreground/20 backdrop-blur-sm rounded-[1.5rem] flex items-center justify-center text-foreground/60 hover:text-foreground hover:bg-foreground/30 transition-all duration-300"
       >
-        <span className="text-xs">nav</span>
+        <span className="text-xs lowercase">nav</span>
       </button>
     );
   }
@@ -108,32 +104,32 @@ const Navigation = () => {
   return (
     <nav 
       ref={navRef}
-      className={`fixed z-50 transition-all duration-300 ${isMinimized ? 'scale-75 opacity-50' : 'scale-100 opacity-100'}`}
+      className="fixed z-50 transition-all duration-300"
       style={{ 
         left: `${position.x}px`, 
         top: `${position.y}px`,
         cursor: isDragging ? 'grabbing' : 'grab'
       }}
     >
-      <div className="bg-black/20 backdrop-blur-sm curved-edges select-none">
+      <div className="bg-background/20 backdrop-blur-sm rounded-[1.5rem] select-none">
         {/* Header with controls */}
         <div 
-          className="flex items-center justify-between p-2 border-b border-white/10"
+          className="flex items-center justify-between p-2 border-b border-foreground/10"
           onMouseDown={handleMouseDown}
         >
-          <span className="text-xs text-white/60">navigation</span>
+          <span className="text-xs text-foreground/60 lowercase">navigation</span>
           <div className="flex space-x-1">
             <button
-              onClick={handleMinimize}
-              className="w-4 h-4 bg-white/20 curved-edges flex items-center justify-center hover:bg-white/30 transition-colors"
+              onClick={toggleTheme}
+              className="w-4 h-4 bg-foreground/20 rounded-[1.5rem] flex items-center justify-center hover:bg-foreground/30 transition-colors"
             >
-              <Minimize size={8} className="text-white/80" />
+              {isDarkMode ? <Sun size={8} className="text-foreground/80" /> : <Moon size={8} className="text-foreground/80" />}
             </button>
             <button
               onClick={handleClose}
-              className="w-4 h-4 bg-white/20 curved-edges flex items-center justify-center hover:bg-red-500/50 transition-colors"
+              className="w-4 h-4 bg-foreground/20 rounded-[1.5rem] flex items-center justify-center hover:bg-red-500/50 transition-colors"
             >
-              <X size={8} className="text-white/80" />
+              <X size={8} className="text-foreground/80" />
             </button>
           </div>
         </div>
@@ -144,10 +140,10 @@ const Navigation = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`text-left text-xs tracking-wider transition-all duration-300 hover:scale-105 curved-edges px-2 py-1 ${
+              className={`text-left text-xs tracking-wider transition-all duration-300 hover:scale-105 rounded-[1.5rem] px-2 py-1 ${
                 activeSection === item.id 
-                  ? 'text-white opacity-100 bg-white/10' 
-                  : 'text-white opacity-40 hover:opacity-70 hover:bg-white/5'
+                  ? 'text-foreground opacity-100 bg-foreground/10' 
+                  : 'text-foreground opacity-40 hover:opacity-70 hover:bg-foreground/5'
               }`}
             >
               {item.label}

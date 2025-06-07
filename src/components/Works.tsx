@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Works = () => {
@@ -28,31 +27,28 @@ const Works = () => {
   return (
     <div className="flex items-center justify-center min-h-screen px-8">
       <div className="max-w-6xl w-full">
-        <h2 className="text-6xl font-bold mb-16 tracking-wider">WORKS</h2>
+        <h2 className="mb-16 tracking-wider lowercase">works</h2>
         
         <div className="space-y-8">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group border-b border-white border-opacity-20 pb-8 cursor-pointer transition-all duration-500 hover:border-opacity-60"
+              className="group border border-foreground/10 rounded-[1.5rem] p-8 cursor-pointer transition-all duration-500 hover:border-foreground/20"
             >
               <div className="flex justify-between items-center">
                 <div className="flex-1">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2 transition-all duration-300 group-hover:tracking-wider">
+                  <h3 className="mb-2 transition-all duration-300 group-hover:tracking-wider lowercase">
                     {project.title}
                   </h3>
-                  <p className="text-lg opacity-60 transition-all duration-300 group-hover:opacity-80">
+                  <p className="text-foreground/60 transition-all duration-300 group-hover:text-foreground/80 lowercase">
                     {project.description}
                   </p>
                 </div>
                 
                 <div className="text-right">
-                  <div className="text-lg font-mono opacity-40">{project.year}</div>
-                  <div className="w-12 h-px bg-white opacity-0 transition-all duration-500 group-hover:opacity-60 mt-2" />
+                  <div className="text-sm font-mono text-foreground/40">{project.year}</div>
                 </div>
               </div>
-              
-              <div className="mt-6 h-32 bg-gradient-to-r from-white to-transparent opacity-0 transition-all duration-500 group-hover:opacity-5" />
             </div>
           ))}
         </div>
