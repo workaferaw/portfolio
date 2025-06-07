@@ -39,15 +39,15 @@ const Navigation = () => {
 
   return (
     <nav className="fixed top-8 left-8 z-50">
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-4 bg-black/20 backdrop-blur-sm p-4 curved-edges">
         {navItems.map((item) => (
           <button
             key={item.id}
             onClick={() => scrollToSection(item.id)}
-            className={`text-left text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105 ${
+            className={`text-left text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105 font-mono-serif curved-edges px-2 py-1 ${
               activeSection === item.id 
-                ? 'text-white opacity-100' 
-                : 'text-white opacity-40 hover:opacity-70'
+                ? 'text-white opacity-100 bg-white/10' 
+                : 'text-white opacity-40 hover:opacity-70 hover:bg-white/5'
             }`}
           >
             {item.label}

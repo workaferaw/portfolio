@@ -64,6 +64,11 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			fontFamily: {
+				'mono-serif': ['JetBrains Mono', 'Playfair Display', 'monospace', 'serif'],
+				'mono': ['JetBrains Mono', 'monospace'],
+				'serif': ['Playfair Display', 'serif'],
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',

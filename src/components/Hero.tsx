@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -12,14 +13,26 @@ const Hero = () => {
   return (
     <div className="flex items-center justify-center min-h-screen relative">
       <div className="text-center">
+        <div 
+          className={`mb-8 flex justify-center transition-all duration-1000 ${
+            isLoaded ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+          }`}
+        >
+          <Avatar className="w-20 h-20 md:w-24 md:h-24 border-2 border-white/20 curved-edges">
+            <AvatarImage src="/placeholder.svg" alt="Workaferaw" />
+            <AvatarFallback className="bg-white/10 text-white font-mono-serif text-lg">
+              W
+            </AvatarFallback>
+          </Avatar>
+        </div>
+        
         <h1 
-          className={`text-8xl md:text-9xl font-bold tracking-wider transition-all duration-2000 ${
+          className={`text-8xl md:text-9xl font-bold tracking-wider transition-all duration-2000 font-mono-serif ${
             isLoaded 
               ? 'opacity-100 transform translate-y-0' 
               : 'opacity-0 transform translate-y-8'
           }`}
           style={{
-            fontFamily: 'monospace',
             textShadow: '0 0 20px rgba(255, 255, 255, 0.1)',
           }}
         >
@@ -27,13 +40,13 @@ const Hero = () => {
         </h1>
         
         <div 
-          className={`mt-8 w-64 h-px bg-white mx-auto transition-all duration-1500 delay-500 ${
+          className={`mt-8 w-64 h-px bg-white mx-auto transition-all duration-1500 delay-500 curved-edges ${
             isLoaded ? 'scale-x-100 opacity-70' : 'scale-x-0 opacity-0'
           }`}
         />
         
         <div 
-          className={`mt-16 text-sm tracking-[0.3em] uppercase transition-all duration-1000 delay-1000 ${
+          className={`mt-16 text-sm tracking-[0.3em] uppercase transition-all duration-1000 delay-1000 font-mono-serif ${
             isLoaded ? 'opacity-60' : 'opacity-0'
           }`}
         >
