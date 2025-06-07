@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -65,9 +64,9 @@ export default {
 				}
 			},
 			fontFamily: {
-				'mono-serif': ['JetBrains Mono', 'Playfair Display', 'monospace', 'serif'],
-				'mono': ['JetBrains Mono', 'monospace'],
 				'serif': ['Playfair Display', 'serif'],
+				'mono': ['jetbrains mono', 'monaco', 'consolas', 'monospace'],
+				'serif-mono': ['Playfair Display', 'jetbrains mono', 'serif', 'monospace'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
