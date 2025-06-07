@@ -20,14 +20,14 @@ const Hero = () => {
         >
           <Avatar className="w-20 h-20 md:w-24 md:h-24 border-2 border-white/20 curved-edges">
             <AvatarImage src="/placeholder.svg" alt="Workaferaw" />
-            <AvatarFallback className="bg-white/10 text-white font-serif text-lg">
+            <AvatarFallback className="bg-white/10 text-white text-lg">
               W
             </AvatarFallback>
           </Avatar>
         </div>
         
         <h1 
-          className={`text-8xl md:text-9xl font-bold tracking-wider transition-all duration-2000 font-serif ${
+          className={`text-8xl md:text-9xl font-bold tracking-wider transition-all duration-2000 ${
             isLoaded 
               ? 'opacity-100 transform translate-y-0' 
               : 'opacity-0 transform translate-y-8'
@@ -46,7 +46,7 @@ const Hero = () => {
         />
         
         <div 
-          className={`mt-16 text-sm tracking-[0.3em] transition-all duration-1000 delay-1000 font-mono-lower ${
+          className={`mt-16 text-sm tracking-[0.3em] transition-all duration-1000 delay-1000 ${
             isLoaded ? 'opacity-60' : 'opacity-0'
           }`}
         >

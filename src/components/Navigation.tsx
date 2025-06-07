@@ -100,7 +100,7 @@ const Navigation = () => {
         onClick={handleRestore}
         className="fixed top-4 left-4 z-50 w-8 h-8 bg-white/20 backdrop-blur-sm curved-edges flex items-center justify-center text-white/60 hover:text-white hover:bg-white/30 transition-all duration-300"
       >
-        <span className="text-xs font-mono-lower">nav</span>
+        <span className="text-xs">nav</span>
       </button>
     );
   }
@@ -121,7 +121,7 @@ const Navigation = () => {
           className="flex items-center justify-between p-2 border-b border-white/10"
           onMouseDown={handleMouseDown}
         >
-          <span className="text-xs font-mono-lower text-white/60">navigation</span>
+          <span className="text-xs text-white/60">navigation</span>
           <div className="flex space-x-1">
             <button
               onClick={handleMinimize}
@@ -144,7 +144,7 @@ const Navigation = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`text-left text-xs tracking-wider transition-all duration-300 hover:scale-105 font-mono-lower curved-edges px-2 py-1 ${
+              className={`text-left text-xs tracking-wider transition-all duration-300 hover:scale-105 curved-edges px-2 py-1 ${
                 activeSection === item.id 
                   ? 'text-white opacity-100 bg-white/10' 
                   : 'text-white opacity-40 hover:opacity-70 hover:bg-white/5'
