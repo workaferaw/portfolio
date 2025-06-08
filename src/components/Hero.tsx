@@ -63,11 +63,14 @@ This is an experimental project to showcase your skills and aspirations. When an
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      console.log('Sending request to:', apiUrl);
+      
       const response = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           message: messageToSend,
           prePrompt: prePrompt,
@@ -75,16 +78,35 @@ This is an experimental project to showcase your skills and aspirations. When an
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json();
+        console.error('Server error:', errorData);
+        throw new Error(errorData.error || `Server error: ${response.status}`);
       }
 
       const aiResponse = await response.json();
+      if (!aiResponse) {
+        throw new Error('Empty response from server');
+      }
+      
       const newAiMessage: Message = { role: 'ai', content: aiResponse };
       setChatHistory(prev => [...prev, newAiMessage]);
 
     } catch (error) {
-      console.error('Error sending message to DeepSeek AI:', error);
-      setChatHistory(prev => [...prev, { role: 'ai', content: 'Oops! Something went wrong. Please try again.' }]);
+      console.error('Error sending message:', error);
+      let errorMessage = 'Sorry, I encountered an error. ';
+      
+      if (error.message.includes('Failed to fetch')) {
+        errorMessage += 'Please check your internet connection and try again.';
+      } else if (error.message.includes('Server error')) {
+        errorMessage += 'The server is having issues. Please try again later.';
+      } else {
+        errorMessage += 'Please try again later.';
+      }
+      
+      setChatHistory(prev => [...prev, { 
+        role: 'ai', 
+        content: errorMessage
+      }]);
     } finally {
       setIsLoading(false);
     }
