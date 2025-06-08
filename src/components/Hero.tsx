@@ -77,7 +77,7 @@ This is an experimental project to showcase your skills and aspirations. When an
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include',
+        credentials: 'omit', // Changed to omit for broader access
         body: JSON.stringify({
           message: messageToSend,
           prePrompt: prePrompt,

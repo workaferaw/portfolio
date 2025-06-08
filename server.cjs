@@ -6,10 +6,10 @@ const app = express();
 
 // Configure CORS - More permissive for testing
 app.use(cors({
-  origin: true, // Allow all origins
+  origin: '*', // Allow all origins for now
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: false // Changed to false for broader access
 }));
 
 app.use(express.json());
@@ -19,6 +19,11 @@ app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   console.log('Origin:', req.headers.origin);
   next();
+});
+
+// Add a GET handler for the API endpoint
+app.get('/api/chat', (req, res) => {
+  res.json({ status: 'API is running' });
 });
 
 app.post('/api/chat', async (req, res) => {
