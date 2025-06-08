@@ -11,7 +11,10 @@ const corsOptions = {
     'http://localhost:8080',
     'http://localhost:3000',
     'https://workaferaw-motion-archive.vercel.app',
-    'https://portfolio-workaferaws-projects.vercel.app'
+    'https://portfolio-workaferaws-projects.vercel.app',
+    'https://portfolio-git-main-workaferaws-projects.vercel.app',
+    'https://portfolio-ten-alpha-sq0wlwf4tk.vercel.app',
+    /^https:\/\/portfolio-.*\.vercel\.app$/  // This will match all preview deployments
   ],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
