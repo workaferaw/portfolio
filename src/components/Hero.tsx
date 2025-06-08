@@ -62,7 +62,8 @@ You think fast, move intentionally, and value blunt, practical feedback over flu
 This is an experimental project to showcase your skills and aspirations. When answering questions, strictly use the information provided above. If a question is outside this scope, politely state that you can only provide information based on Werq's portfolio and professional details.`;
 
     try {
-      const response = await fetch('http://localhost:3001/api/chat', { // Assuming your proxy runs on port 3001
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -167,8 +168,8 @@ This is an experimental project to showcase your skills and aspirations. When an
         </button>
 
         {showChat && (
-          <div className="mt-8 max-w-2xl mx-auto p-4 bg-background/5 border border-foreground/10 rounded-[1.5rem] flex flex-col items-center justify-between min-h-[250px] transition-all duration-300">
-            <div ref={chatHistoryRef} className="flex-grow w-full text-left overflow-y-auto pr-2 scrollbar-hide mb-4">
+          <div className="mt-8 max-w-2xl mx-auto p-4 bg-background/5 border border-foreground/10 rounded-[1.5rem] flex flex-col items-center min-h-[400px] transition-all duration-300 w-[90vw] sm:w-full">
+            <div ref={chatHistoryRef} className="flex-grow w-full text-left overflow-y-auto pr-2 mb-4">
               {chatHistory.map((msg, index) => (
                 <div key={index} className={`mb-2 text-sm ${msg.role === 'user' ? 'text-foreground/80' : 'text-foreground'}`}>
                   <span className="font-bold">{msg.role === 'user' ? 'you: ' : 'werq: '}</span>{msg.content}
@@ -189,7 +190,7 @@ This is an experimental project to showcase your skills and aspirations. When an
                     handleSendMessage(chatInput);
                   }
                 }}
-                className="flex-grow bg-transparent text-foreground lowercase focus:outline-none focus:border-foreground/40"
+                className="flex-grow bg-transparent text-foreground lowercase focus:outline-none focus:border-foreground/40 px-2 py-1"
                 disabled={isLoading}
               />
               <button 
