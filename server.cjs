@@ -5,28 +5,20 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3001;
 
-// Configure CORS
-const corsOptions = {
-  origin: [
-    'http://localhost:8080',
-    'http://localhost:3000',
-    'https://workaferaw-motion-archive.vercel.app',
-    'https://portfolio-workaferaws-projects.vercel.app',
-    'https://portfolio-git-main-workaferaws-projects.vercel.app',
-    'https://portfolio-ten-alpha-sq0wlwf4tk.vercel.app',
-    /^https:\/\/portfolio-.*\.vercel\.app$/  // This will match all preview deployments
-  ],
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'],
+// Configure CORS - More permissive for testing
+app.use(cors({
+  origin: true, // Allow all origins
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
-};
+}));
 
-app.use(cors(corsOptions));
 app.use(express.json());
 
 // Add request logging middleware
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  console.log('Origin:', req.headers.origin);
   next();
 });
 
@@ -89,5 +81,5 @@ app.post('/api/chat', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Gemini Proxy Server running on http://localhost:${port}`);
-  console.log('CORS enabled for origins:', corsOptions.origin);
+  console.log('CORS enabled for origins:', cors.origin);
 }); 

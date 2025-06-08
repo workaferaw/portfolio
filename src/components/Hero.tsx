@@ -62,8 +62,15 @@ You think fast, move intentionally, and value blunt, practical feedback over flu
 This is an experimental project to showcase your skills and aspirations. When answering questions, strictly use the information provided above. If a question is outside this scope, politely state that you can only provide information based on Werq's portfolio and professional details.`;
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      console.log('Sending request to:', apiUrl);
+      // Get the current origin and construct the API URL
+      const currentOrigin = window.location.origin;
+      const apiUrl = import.meta.env.VITE_API_URL || 
+        (currentOrigin.includes('vercel.app') 
+          ? 'https://portfolio-workaferaws-projects.vercel.app'
+          : 'http://localhost:3001');
+      
+      console.log('Current origin:', currentOrigin);
+      console.log('Using API URL:', apiUrl);
       
       const response = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
