@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 3001;
 
 // Configure CORS - More permissive for testing
 app.use(cors({
@@ -79,7 +78,13 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Gemini Proxy Server running on http://localhost:${port}`);
-  console.log('CORS enabled for origins:', cors.origin);
-}); 
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const port = process.env.PORT || 3001;
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+}
+
+// Export the Express API
+module.exports = app; 
