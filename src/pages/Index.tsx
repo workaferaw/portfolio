@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Hero from '@/components/Hero';
 import Works from '@/components/Works';
 import Contact from '@/components/Contact';
+import ChatInterface from '@/components/ChatInterface'; // Added import
 import Navigation from '@/components/Navigation';
 import BackgroundShapes from '@/components/BackgroundShapes';
 
@@ -43,6 +44,16 @@ const Index = () => {
         
         <section id="contact" className="min-h-screen fade-in-section">
           <Contact />
+        </section>
+
+        {/* New Chat Section */}
+        <section id="chat" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/50 fade-in-section">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100">
+              Chat with Gemini
+            </h2>
+            <ChatInterface />
+          </div>
         </section>
       </main>
     </div>
